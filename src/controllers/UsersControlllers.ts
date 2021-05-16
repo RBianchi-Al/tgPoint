@@ -18,6 +18,7 @@ class UsersControllers {
             office_id,} = request.body
         const usersService = new UsersService()
 
+       try{
         const users = await usersService.create({
             cpf,
             dat_adm,
@@ -31,6 +32,11 @@ class UsersControllers {
             office_id,
         })
         return response.json(users)
+       }catch(err){
+           return response.status(400).json({
+               message: err.message,
+           })
+       }
     }
 
 }

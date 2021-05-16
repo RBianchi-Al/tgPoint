@@ -25,6 +25,13 @@ class CompanyService {
     }:ICompanyCreate){
         const companyRepository = getCustomRepository(CompanyRepository)
         
+        const userAlreadyExists = await companyRepository.findOne({
+            cnpj
+        })
+
+        if(userAlreadyExists){
+            throw new Error("Company already exists!")
+        }
         const company = companyRepository.create({
             raz_social,
             cel,
@@ -34,6 +41,7 @@ class CompanyService {
             senha,
             cpf
         });
+
 
         await companyRepository.save(company)
 

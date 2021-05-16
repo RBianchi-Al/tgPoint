@@ -13,17 +13,22 @@ class CompanyControllers {
         cpf } = request.body
         const companyService = new CompanyService();
 
-        const company = await companyService.create({
-            cel,
-            cnpj,
-            email,
-            id_admin,
-            raz_social,
-            senha,
-            cpf
-        })
-        return response.json(company)
+        try{
+            const company = await companyService.create({
+                cel,
+                cnpj,
+                email,
+                id_admin,
+                raz_social,
+                senha,
+                cpf
+            })
+            return response.json(company)
+        }catch(err){
+            return response.status(400).json({
+                message: err.message
+            })
+        }
     }
-
 }
 export {CompanyControllers}

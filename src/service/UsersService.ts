@@ -22,7 +22,16 @@ class UsersService {
         office_id}: IUserCreate){
         const usersRepository = getCustomRepository(UsersRepository)
 
-       const users =  usersRepository.create({
+        const userAlreadyExists = await usersRepository.findOne({
+            cpf
+        })
+
+        if(userAlreadyExists){
+            throw new Error("User already exists!")
+        }
+        
+       
+        const users =  usersRepository.create({
             username,
             cpf,
             nis_pis,
