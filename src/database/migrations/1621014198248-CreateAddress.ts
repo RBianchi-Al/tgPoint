@@ -38,7 +38,16 @@ export class CreateAddress1621014198248 implements MigrationInterface {
                         
                     },
                     {
+                        name: "cep",
+                        type: "varchar"
+                    },
+                    {
                         name: "users_id",
+                        type: "uuid",
+
+                    },
+                    {
+                        name: "company_id",
                         type: "uuid",
 
                     },
@@ -54,6 +63,14 @@ export class CreateAddress1621014198248 implements MigrationInterface {
                     }
                 ],
                 foreignKeys: [
+                    {
+                        name: 'FKCompany',
+                        referencedTableName: 'company',
+                        referencedColumnNames: ['id'],
+                        columnNames: ['company_id'],
+                        onDelete: 'SET NULL',
+                        onUpdate: 'SET NULL',
+                      },
                     {
                       name: 'FKUsers',
                       referencedTableName: 'users',

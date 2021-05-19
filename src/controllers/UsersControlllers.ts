@@ -4,7 +4,6 @@ import { UsersService } from '../service/UsersService'
 
 
 class UsersControllers {
-
     async create(request: Request, response: Response){
         const {cpf,
             dat_adm,
@@ -15,7 +14,7 @@ class UsersControllers {
             senha,
             username,
             company_id,
-            office_id,} = request.body
+            office_id,id} = request.body
         const usersService = new UsersService()
 
        try{
@@ -30,6 +29,7 @@ class UsersControllers {
             username,
             company_id,
             office_id,
+            id
         })
         return response.json(users)
        }catch(err){
@@ -37,6 +37,22 @@ class UsersControllers {
                message: err.message,
            })
        }
+    }
+    async deleteUser(request: Request, response: Response){
+        const {id} = request.params
+        const usersService = new UsersService()
+ 
+       
+
+        try{
+            const deletUsers = await usersService.deleteUser(id);
+            return response.json(deletUsers)
+           }catch(err){
+               return response.status(400).json({
+                   message: err.message,
+               })
+           }
+
     }
 
 }

@@ -1,3 +1,4 @@
+import { request } from "express";
 import { getCustomRepository } from "typeorm";
 import { SettingsRepository } from "../repositories/SettingsRepository";
 
@@ -20,17 +21,22 @@ class SettingsService {
         if(userAlreadyExists){
             throw new Error("User already exists!")
         }
-        
-
-
         const settings = settingsRepository.create({
             color,
             username,
         });
+
+        
         await settingsRepository.save(settings)
         
         return settings;
     }
+    
 }
+
+
+
+
+
 
 export {SettingsService}

@@ -10,7 +10,7 @@ class CompanyControllers {
             id_admin,
             raz_social,
             senha,
-        cpf } = request.body
+            cpf } = request.body
         const companyService = new CompanyService();
 
         try{

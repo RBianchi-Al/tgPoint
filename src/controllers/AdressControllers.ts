@@ -10,7 +10,8 @@ class AdressControllers {
             road,
             state,
             users_id,
-            number} = request.body
+            number, 
+            cep} = request.body
 
         const adressService = new AdressService();
 
@@ -20,7 +21,8 @@ class AdressControllers {
             road,
             state,
             users_id,
-            number
+            number,
+            cep
         });
 
         return response.json(adress);

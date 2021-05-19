@@ -46,7 +46,7 @@ export class CreateUsers1620960210919 implements MigrationInterface {
                     },
                     {
                         name: "company_id",
-                        type: "varchar"
+                        type: "uuid"
                     },
                     {
                         name: "office_id",

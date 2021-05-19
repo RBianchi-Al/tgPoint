@@ -13,6 +13,7 @@ class OfficeControllers {
 
         return response.json(office);
     }
+    
 
 }
 export {OfficeControllers}

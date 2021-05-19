@@ -11,27 +11,31 @@ interface IUserCreate{
     dat_nasc: string;
     senha: string;
     company_id: string;
-    office_id: string;
-    
+    office_id: string; 
+    id: string;
 }
 
 
 class UsersService {
+    private usersRepository : UsersRepository;
 
+    constructor(){
+        this.usersRepository = getCustomRepository(UsersRepository)
+    }
     async create({cpf, dat_adm, dat_dem,dat_nasc,email,nis_pis,senha,username, company_id,
-        office_id}: IUserCreate){
-        const usersRepository = getCustomRepository(UsersRepository)
-
-        const userAlreadyExists = await usersRepository.findOne({
+        office_id, id}: IUserCreate){
+        
+        const userAlreadyExists = await this.usersRepository.findOne({
             cpf
         })
-
+        
         if(userAlreadyExists){
             throw new Error("User already exists!")
         }
         
+
        
-        const users =  usersRepository.create({
+        const users =  this.usersRepository.create({
             username,
             cpf,
             nis_pis,
@@ -42,11 +46,17 @@ class UsersService {
             senha,
             company_id,
             office_id,
+            id
 
         });
-        await usersRepository.save(users);
+        await this.usersRepository.save(users);
 
         return users;
+    }
+    async deleteUser(id: string){
+        const usersRepository = await this.usersRepository.find({
+            where: { id } 
+        })        
     }
 }
 export {UsersService}

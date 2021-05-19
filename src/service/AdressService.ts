@@ -8,6 +8,7 @@ interface IAdressCreate{
     road: string;
     state: string;
     users_id: string;
+    cep: string;
 }
 
 
@@ -18,7 +19,7 @@ class AdressService{
         number,
         road,
         state,
-        users_id}:IAdressCreate){
+        users_id, cep}:IAdressCreate){
         const adressRepository = getCustomRepository(AddressRepository)
         
         const adress = adressRepository.create({
@@ -27,7 +28,8 @@ class AdressService{
             road,
             state,
             users_id,
-            number
+            number, 
+            cep
 
         });
 

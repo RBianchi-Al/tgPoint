@@ -48,6 +48,11 @@ export class CreatePoint1621014869932 implements MigrationInterface {
                                               
                     },
                     {
+                        name: "vacation",
+                        type: "timestamp",
+                        default: 'now()',
+                    },
+                    {
                         name: "updated_at",
                         type: "timestamp",
                         default: "now()",

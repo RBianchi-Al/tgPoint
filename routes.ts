@@ -14,10 +14,15 @@ const routes = Router();
 // Configurações do sistema (cor)
 const settingsControllers = new SettingsController; 
 routes.post("/settings", settingsControllers.create);
+routes.get("/settings/:color", settingsControllers.create)
+
+
+
 
 
 const usersControllers = new UsersControllers();
 routes.post("/users", usersControllers.create);
+routes.delete("/users/:id", usersControllers.deleteUser);
 
 const companyControllers = new CompanyControllers();
 routes.post("/company", companyControllers.create);

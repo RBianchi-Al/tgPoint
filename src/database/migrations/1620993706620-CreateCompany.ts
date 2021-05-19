@@ -30,7 +30,7 @@ export class CreateCompany1620993706620 implements MigrationInterface {
                     },
                     {
                         name: "id_admin",
-                        type: "varchar",
+                        type: "uuid",
                     },
                     {
                         name: "cpf",
