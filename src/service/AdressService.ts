@@ -9,33 +9,45 @@ interface IAdressCreate{
     state: string;
     users_id: string;
     cep: string;
+    company_id: string;
 }
 
 
 class AdressService{
+    private adressRepository: AddressRepository;
+    constructor(){
+        this.adressRepository = getCustomRepository(AddressRepository);
+    }
 
     async create({city,
         district,
         number,
         road,
         state,
-        users_id, cep}:IAdressCreate){
-        const adressRepository = getCustomRepository(AddressRepository)
+        users_id,
+        company_id, 
+        cep}:IAdressCreate){
         
-        const adress = adressRepository.create({
+        
+        const adress = this.adressRepository.create({
             city,
             district,
             road,
             state,
             users_id,
             number, 
+            company_id,
             cep
 
         });
 
-        await adressRepository.save(adress)
+        await this.adressRepository.save(adress)
         return adress; 
    
+    }
+    async listByAdress(){
+        const listAdress = await this.adressRepository.find()
+        return listAdress;
     }
 }
 

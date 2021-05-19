@@ -13,6 +13,10 @@ interface ICompanyCreate {
 }
 
 class CompanyService {
+    private companyRepository: CompanyRepository;
+    constructor(){
+        this.companyRepository = getCustomRepository(CompanyRepository)
+    }
 
     async create({
         raz_social,
@@ -23,16 +27,15 @@ class CompanyService {
             senha,
             cpf
     }:ICompanyCreate){
-        const companyRepository = getCustomRepository(CompanyRepository)
         
-        const userAlreadyExists = await companyRepository.findOne({
+        const userAlreadyExists = await this.companyRepository.findOne({
             cnpj
         })
 
         if(userAlreadyExists){
             throw new Error("Company already exists!")
         }
-        const company = companyRepository.create({
+        const company = this.companyRepository.create({
             raz_social,
             cel,
             cnpj,
@@ -43,9 +46,13 @@ class CompanyService {
         });
 
 
-        await companyRepository.save(company)
+        await this.companyRepository.save(company)
 
         return company; 
+    }
+    async listByCompany(){
+        const listCompany = await this.companyRepository.find();
+        return listCompany;
     }
 }
 export {CompanyService}

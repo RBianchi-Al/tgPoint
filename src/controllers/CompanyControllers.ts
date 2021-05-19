@@ -1,4 +1,4 @@
-import {Request, Response} from 'express'
+import {Request, response, Response} from 'express'
 import { CompanyService } from '../service/CompanyService'
 
 
@@ -28,6 +28,18 @@ class CompanyControllers {
             return response.status(400).json({
                 message: err.message
             })
+        }
+    }
+    async showByCompany(request: Request, response: Response){
+        const companyService = new CompanyService();
+       
+        try{
+            const listCompany = await companyService.listByCompany()
+            return response.json(listCompany)
+        }catch(err){
+            return response.status(400).json({
+                message: err.message,
+            });
         }
     }
 }

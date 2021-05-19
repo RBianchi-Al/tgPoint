@@ -15,27 +15,27 @@ export class CreatePoint1621014869932 implements MigrationInterface {
                     {
                         name: "date_entry",
                         type: 'timestamp',
-                        default: 'now()'                      
+                                              
                     },
                     {
                         name: "lunch_out",
                         type: 'timestamp',
-                        default: 'now()'                      
+                                         
                     },
                     {
                         name: "lunch_entry",
                         type: 'timestamp',
-                        default: 'now()'                      
+                                         
                     },
                     {
                         name: "date_out",
                         type: 'timestamp',
-                        default: 'now()'                      
+                                        
                     },
                     {
                         name: "date_creation",
                         type: 'timestamp',
-                        default: 'now()'                      
+                                      
                     },
                     {
                         name: "ip_adress",
@@ -50,7 +50,7 @@ export class CreatePoint1621014869932 implements MigrationInterface {
                     {
                         name: "vacation",
                         type: "timestamp",
-                        default: 'now()',
+                       
                     },
                     {
                         name: "updated_at",

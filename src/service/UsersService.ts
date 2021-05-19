@@ -20,7 +20,7 @@ class UsersService {
     private usersRepository : UsersRepository;
 
     constructor(){
-        this.usersRepository = getCustomRepository(UsersRepository)
+        this.usersRepository = getCustomRepository(UsersRepository);
     }
     async create({cpf, dat_adm, dat_dem,dat_nasc,email,nis_pis,senha,username, company_id,
         office_id, id}: IUserCreate){
@@ -56,7 +56,12 @@ class UsersService {
     async deleteUser(id: string){
         const usersRepository = await this.usersRepository.find({
             where: { id } 
-        })        
+        });       
+        return usersRepository;
+    }
+    async listByUser(){
+        const list = await this.usersRepository.find({})
+        return list;
     }
 }
 export {UsersService}

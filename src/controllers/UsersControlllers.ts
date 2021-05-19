@@ -14,7 +14,8 @@ class UsersControllers {
             senha,
             username,
             company_id,
-            office_id,id} = request.body
+            office_id,
+            id} = request.body
         const usersService = new UsersService()
 
        try{
@@ -50,9 +51,15 @@ class UsersControllers {
            }catch(err){
                return response.status(400).json({
                    message: err.message,
-               })
+               });
            }
 
+    }
+    async showByUser(request: Request, response: Response){
+        const usersService = new UsersService();
+
+        const listUsers = await usersService.listByUser();
+        return response.json(listUsers);
     }
 
 }

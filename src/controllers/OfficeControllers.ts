@@ -13,6 +13,18 @@ class OfficeControllers {
 
         return response.json(office);
     }
+    async showByOffice(request: Request, response: Response){
+        const officeService = new OfficeService();
+        try{
+            const listOffice = await officeService.listByOffice()
+            return response.json(listOffice) 
+        }catch(err){
+            return response.status(400).json({
+                message: err.message,
+            });
+        }
+        
+    }
     
 
 }

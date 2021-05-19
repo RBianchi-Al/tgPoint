@@ -11,6 +11,9 @@ class Point {
     @PrimaryColumn()
     ip_adress: string;
 
+    @PrimaryColumn()
+    vacation: string;
+
     @CreateDateColumn()
     date_entry: Date; 
 

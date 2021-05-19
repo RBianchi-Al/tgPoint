@@ -8,18 +8,32 @@ interface IPhotosCreate{
 }
 
 class PhotosService{
+    private photosRepository : PhotosRepository;
+    constructor() {
+        this.photosRepository = getCustomRepository(PhotosRepository)
+    }
 
     async create({url,
         users_id}:IPhotosCreate){
-        const photosRepository = getCustomRepository(PhotosRepository)
+        
     
-        const photos = photosRepository.create({
+        const photos = this.photosRepository.create({
             url,
             users_id
         });
-        await photosRepository.save(photos)
+        await this.photosRepository.save(photos)
         return photos; 
     
+    }
+    async detelePhotos(id:string){
+        const photosRepository = await this.photosRepository.find({
+            where: {id}
+        });
+        return photosRepository;
+    }
+    async listByPhotos(){
+        const listPhotos = await this.photosRepository.find({});
+        return listPhotos;
     }
 }
 

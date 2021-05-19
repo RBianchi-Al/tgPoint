@@ -11,7 +11,9 @@ class PointControllers {
         lunch_entry,
         users_id,
         lunch_out,
-        date_creation
+        date_creation,
+        id,
+        vacation
         } = request.body
 
         const pointService = new PointService();
@@ -24,8 +26,38 @@ class PointControllers {
         lunch_entry,
         users_id,
         lunch_out,
+        id,
+        vacation    
         });
         return response.json(point)
+    }
+    async deletePoint(request: Request, response: Response){
+        const {id} = request.params
+        const pointService = new PointService()
+ 
+       
+
+        try{
+            const deletPoints = await pointService.deletePoint(id);
+            return response.json(deletPoints)
+           }catch(err){
+               return response.status(400).json({
+                   message: err.message,
+               })
+           }
+    }
+    async showByPoint(request: Request, response: Response){
+        const pointService = new PointService();
+        
+        try{
+            const listPoints = await pointService.listByPoint()
+            return response.json(listPoints)
+        }catch(err){
+            return response.status(400).json({
+                message: err.message,
+        })
+    }
+        
     }
 
 }

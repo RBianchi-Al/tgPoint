@@ -6,16 +6,25 @@ interface IOfficeCreate {
 }
 
 class OfficeService {
+    private officeRepository : OfficeRepository;
+    constructor(){
+        this.officeRepository = getCustomRepository(OfficeRepository)
+       
+
+    }
 
     async create({username_office}: IOfficeCreate){
-        const officeRepository = getCustomRepository(OfficeRepository)
-        
-        const office = officeRepository.create({
+         
+        const office = this.officeRepository.create({
             username_office
         });
-        await officeRepository.save(office);
+        await this.officeRepository.save(office);
         return office;
         
+    }
+    async listByOffice(){
+        const listOffice = await this.officeRepository.find({});
+        return listOffice;
     }
 }
 export {OfficeService}
